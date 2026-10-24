@@ -1,0 +1,80 @@
+{
+  "name": "FindJobCampaign",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "FindJobCampaign": {
+        "$path": "src/shared",
+        "Client": {
+          "$path": "src/client"
+        },
+        "Assets": {
+          "$className": "Folder",
+          "$ignoreUnknownInstances": true
+        }
+      }
+    },
+    "ServerScriptService": {
+      "FindJobCampaign": {
+        "$path": "src/server"
+      },
+      "FindJobCampaignLoader": {
+        "$path": "src/loaders/CampaignLoader.server.luau"
+      },
+      "HostGame": {
+        "$path": "src/host-example/HostGame.server.luau"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "FindJobCampaignLoader": {
+          "$path": "src/loaders/CampaignLoader.client.luau"
+        },
+        "HostGame": {
+          "$path": "src/host-example/HostGame.client.luau"
+        }
+      }
+    },
+    "Workspace": {
+      "Baseplate": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Locked": true,
+          "Size": [
+            512,
+            20,
+            512
+          ],
+          "Position": [
+            0,
+            -10,
+            0
+          ],
+          "Color": [
+            0.39,
+            0.62,
+            0.35
+          ],
+          "Material": "Grass"
+        }
+      },
+      "SpawnLocation": {
+        "$className": "SpawnLocation",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            6,
+            1,
+            6
+          ],
+          "Position": [
+            0,
+            0.5,
+            30
+          ]
+        }
+      }
+    }
+  }
+}
