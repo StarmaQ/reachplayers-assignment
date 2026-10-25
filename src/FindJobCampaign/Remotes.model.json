@@ -1,0 +1,135 @@
+{
+  "ClassName": "Folder",
+  "Children": [
+    {
+      "Name": "OpenDialogue",
+      "ClassName": "RemoteEvent",
+      "Properties": {
+        "Attributes": {
+          "Attributes": {
+            "Description": {
+              "String": "Server -> client (). The player triggered Maya's prompt."
+            }
+          }
+        }
+      }
+    },
+    {
+      "Name": "FieldAssigned",
+      "ClassName": "RemoteEvent",
+      "Properties": {
+        "Attributes": {
+          "Attributes": {
+            "Description": {
+              "String": "Server -> client (fieldId). Answers were classified: show the match and guide to the station."
+            }
+          }
+        }
+      }
+    },
+    {
+      "Name": "MissionStarted",
+      "ClassName": "RemoteEvent",
+      "Properties": {
+        "Attributes": {
+          "Attributes": {
+            "Description": {
+              "String": "Server -> client (missionId, puzzle). Puzzle data without the answers."
+            }
+          }
+        }
+      }
+    },
+    {
+      "Name": "MissionResult",
+      "ClassName": "RemoteEvent",
+      "Properties": {
+        "Attributes": {
+          "Attributes": {
+            "Description": {
+              "String": "Server -> client (result). { step, correct, feedback, done, reward? }"
+            }
+          }
+        }
+      }
+    },
+    {
+      "Name": "CloseAll",
+      "ClassName": "RemoteEvent",
+      "Properties": {
+        "Attributes": {
+          "Attributes": {
+            "Description": {
+              "String": "Server -> client (). The server ended the campaign for this player (Exit / Disable)."
+            }
+          }
+        }
+      }
+    },
+    {
+      "Name": "SubmitAnswers",
+      "ClassName": "RemoteEvent",
+      "Properties": {
+        "Attributes": {
+          "Attributes": {
+            "Description": {
+              "String": "Client -> server (answerIndexes, seconds). { [questionIndex] = answerIndex } and time per question."
+            }
+          }
+        }
+      }
+    },
+    {
+      "Name": "SubmitMission",
+      "ClassName": "RemoteEvent",
+      "Properties": {
+        "Attributes": {
+          "Attributes": {
+            "Description": {
+              "String": "Client -> server (step, answer). Coding: { chip, ... } per gap. Grading: { [lineId] = isCorrect }."
+            }
+          }
+        }
+      }
+    },
+    {
+      "Name": "SubmitFitFeedback",
+      "ClassName": "RemoteEvent",
+      "Properties": {
+        "Attributes": {
+          "Attributes": {
+            "Description": {
+              "String": "Client -> server (agreed). 'Did this job feel like you?' after the mission."
+            }
+          }
+        }
+      }
+    },
+    {
+      "Name": "RequestExit",
+      "ClassName": "RemoteEvent",
+      "Properties": {
+        "Attributes": {
+          "Attributes": {
+            "Description": {
+              "String": "Client -> server (). The player closed the campaign themselves."
+            }
+          }
+        }
+      }
+    },
+    {
+      "Name": "Track",
+      "ClassName": "RemoteEvent",
+      "Properties": {
+        "Attributes": {
+          "Attributes": {
+            "Description": {
+              "String": "Client -> server (eventName, data). Client-only analytics, whitelisted in Tracker."
+            }
+          }
+        }
+      }
+    }
+  ]
+}

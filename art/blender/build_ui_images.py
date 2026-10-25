@@ -1,9 +1,9 @@
 """
-Renders the 2D UI images (clipboard, exam paper) from simple 3D models,
+Renders the clipboard UI image from a simple 3D model,
 top-down with a transparent background.
 
 Run:  blender --background --python art/blender/build_ui_images.py
-Output: art/export/Clipboard.png, art/export/ExamPaper.png
+Output: art/export/Clipboard.png
 """
 
 import os
@@ -95,18 +95,4 @@ def build_clipboard():
     render("Clipboard.png", 768, 1024, 10.6)
 
 
-def build_exam_paper():
-    clear_scene()
-    rounded_slab("SheetShadow", 7.4, 9.8, 0.02, 0.12, -0.05, (0.75, 0.75, 0.72))
-    bpy.context.active_object.location.xy = (0.08, -0.1)
-    rounded_slab("Sheet", 7.4, 9.8, 0.05, 0.12, 0, (1.0, 1.0, 0.98))
-    # Faint ruled lines, a red margin and a header rule
-    for i in range(14):
-        flat_box(f"Line{i}", 6.6, 0.025, 0.1, (0.72, 0.84, 0.95), y=3.0 - i * 0.52)
-    flat_box("Header", 6.6, 0.05, 0.1, (0.35, 0.5, 0.7), y=3.6)
-    flat_box("Margin", 0.035, 9.4, 0.12, (0.9, 0.35, 0.35), x=-2.7)
-    render("ExamPaper.png", 768, 1024, 10.2)
-
-
 build_clipboard()
-build_exam_paper()

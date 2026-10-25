@@ -1,37 +1,24 @@
 --[[
 	Stand-in for the game the campaign is dropped into. Not part of the campaign package.
-	Shows the only integration a host needs: grant the reward, and optionally toggle the campaign.
+	Shows how a host follows the campaign and toggles it. The reward is handled on its own,
+	in RewardPopup.server.luau.
 ]]
 
-local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerScriptService = game:GetService("ServerScriptService")
 
-local Campaign = require(ServerScriptService.FindJobCampaign)
+local Campaign = require(ServerScriptService.FindJobCampaign.Server)
 
--- The host's own currency
-Players.PlayerAdded:Connect(function(player)
-	local leaderstats = Instance.new("Folder")
-	leaderstats.Name = "leaderstats"
-
-	local coins = Instance.new("IntValue")
-	coins.Name = "Coins"
-	coins.Parent = leaderstats
-
-	leaderstats.Parent = player
+-- Where players are in the campaign (a real host could pause a round timer, close shops...)
+Campaign.MissionStarted:Connect(function(player, fieldId, missionId)
+	print("[Host]", player.Name, "started the", missionId, "mission as", fieldId)
 end)
-
-Campaign.RewardGranted:Connect(function(player, reward)
-	local coins = player:FindFirstChild("leaderstats") and player.leaderstats:FindFirstChild("Coins")
-	if coins then
-		coins.Value += reward.Amount
-	end
+Campaign.CampaignFinished:Connect(function(player, fieldId, agreed)
+	print("[Host]", player.Name, "finished FindJob as", fieldId, "- liked it:", agreed)
 end)
 
 -- Load / unload button (simulates a campaign being switched on and off live)
-local toggleRemote = Instance.new("RemoteEvent")
-toggleRemote.Name = "HostToggleCampaign"
-toggleRemote.Parent = ReplicatedStorage
+local toggleRemote = ReplicatedStorage.HostToggleCampaign
 
 toggleRemote.OnServerEvent:Connect(function()
 	-- A real host would restrict this to admins

@@ -2,36 +2,38 @@
   "name": "FindJobCampaign",
   "tree": {
     "$className": "DataModel",
-    "ReplicatedStorage": {
+    "ServerScriptService": {
       "FindJobCampaign": {
-        "$path": "src/shared",
-        "Client": {
-          "$path": "src/client"
-        },
+        "$path": "src/FindJobCampaign",
         "Assets": {
           "$className": "Folder",
           "$ignoreUnknownInstances": true
+        },
+        "Interface": {
+          "$className": "ScreenGui",
+          "$ignoreUnknownInstances": true,
+          "$properties": {
+            "ResetOnSpawn": false,
+            "IgnoreGuiInset": true,
+            "DisplayOrder": 10,
+            "ZIndexBehavior": "Sibling"
+          }
         }
-      }
-    },
-    "ServerScriptService": {
-      "FindJobCampaign": {
-        "$path": "src/server"
-      },
-      "FindJobCampaignLoader": {
-        "$path": "src/loaders/CampaignLoader.server.luau"
       },
       "HostGame": {
         "$path": "src/host-example/HostGame.server.luau"
+      },
+      "RewardPopup": {
+        "$path": "src/host-example/RewardPopup.server.luau"
       }
     },
     "StarterPlayer": {
       "StarterPlayerScripts": {
-        "FindJobCampaignLoader": {
-          "$path": "src/loaders/CampaignLoader.client.luau"
-        },
         "HostGame": {
           "$path": "src/host-example/HostGame.client.luau"
+        },
+        "RewardPopup": {
+          "$path": "src/host-example/RewardPopup.client.luau"
         }
       }
     },
@@ -73,6 +75,22 @@
             0.5,
             30
           ]
+        }
+      }
+    },
+    "ReplicatedStorage": {
+      "HostToggleCampaign": {
+        "$className": "RemoteEvent"
+      },
+      "HostRewardGranted": {
+        "$className": "RemoteEvent"
+      }
+    },
+    "ServerStorage": {
+      "FindJobTools": {
+        "$className": "Folder",
+        "BuildInterface": {
+          "$path": "art/studio/build_interface.luau"
         }
       }
     }

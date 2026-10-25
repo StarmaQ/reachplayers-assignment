@@ -1,4 +1,5 @@
 -- Host game's load/unload button. Not part of the campaign package.
+-- Also shows how a host reacts to the campaign: its button hides while a mission is open.
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -10,8 +11,8 @@ gui.Name = "HostCampaignToggle"
 gui.ResetOnSpawn = false
 
 local button = Instance.new("TextButton")
-button.AnchorPoint = Vector2.new(0, 1)
-button.Position = UDim2.new(0, 16, 1, -16)
+button.AnchorPoint = Vector2.new(1, 0)
+button.Position = UDim2.new(1, -16, 0, 16)
 button.Size = UDim2.fromOffset(180, 44)
 button.Font = Enum.Font.GothamBold
 button.TextSize = 16
@@ -30,6 +31,18 @@ end
 
 button.Activated:Connect(function()
 	toggleRemote:FireServer()
+end)
+
+local Campaign = require(ReplicatedStorage:WaitForChild("FindJobCampaign"):WaitForChild("Client"))
+Campaign.MissionStarted:Connect(function(fieldId, missionId)
+	print("[Host] mission started:", fieldId, missionId)
+	button.Visible = false
+end)
+Campaign.MissionCompleted:Connect(function()
+	button.Visible = true
+end)
+Campaign.CloseAllUi:Connect(function()
+	button.Visible = true
 end)
 ReplicatedStorage:GetAttributeChangedSignal("FindJobEnabled"):Connect(refresh)
 refresh()
